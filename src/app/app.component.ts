@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
- templateUrl: 'd3chart.html'
+  template: `<div>Hello {{value}}</div>`,
 })
 export class AppComponent {
   value = 'World';
