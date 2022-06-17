@@ -4,6 +4,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
+This project uses code provided by [Karl L. Hughes](https://github.com/karllhughes/angular-d3) 
+
 ## Project setup
 
 ```bash
