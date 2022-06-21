@@ -7,22 +7,17 @@ import * as d3 from 'd3';
   styleUrls: ['./bar.component.css']
 })
 export class BarComponent implements OnInit {
-  private data = [
-    { "Framework": "Vue", "Stars": "166443", "Released": "2014" },
-    { "Framework": "React", "Stars": "150793", "Released": "2013" },
-    { "Framework": "Angular", "Stars": "62342", "Released": "2016" },
-    { "Framework": "Backbone", "Stars": "27647", "Released": "2010" },
-    { "Framework": "Ember", "Stars": "21471", "Released": "2011" },
-  ];
   private svg;
   private margin = 50;
   private width = 750 - (this.margin * 2);
   private height = 400 - (this.margin * 2);
+  private data: any[];
+
   constructor() { }
 
   ngOnInit(): void {
     this.createSvg();
-    this.drawBars(this.data);
+    d3.json('http://localhost:7071/api/GetBarData').then(resp => this.drawBars(this.data));
   }
 
   private createSvg(): void {
