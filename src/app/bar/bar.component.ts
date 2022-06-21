@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import * as d3 from 'd3';
+
+
 
 @Component({
   selector: 'app-bar',
@@ -11,13 +14,15 @@ export class BarComponent implements OnInit {
   private margin = 50;
   private width = 750 - (this.margin * 2);
   private height = 400 - (this.margin * 2);
-  private data: any[];
+  private data;
 
-  constructor() { }
-
+  constructor(private http: HttpClient) {
+    this.http.get('/api/GetBarData')
+      .subscribe((resp: any) => this.data = resp.text);
+  }
   ngOnInit(): void {
     this.createSvg();
-    d3.json('http://localhost:7071/api/GetBarData').then(resp => this.drawBars(this.data));
+    d3.json(this.data);
   }
 
   private createSvg(): void {
