@@ -14,15 +14,13 @@ export class BarComponent implements OnInit {
   private margin = 50;
   private width = 750 - (this.margin * 2);
   private height = 400 - (this.margin * 2);
-  private data;
+  private data: any[];
 
-  constructor(private http: HttpClient) {
-    this.http.get('/api/GetBarData')
-      .subscribe((resp: any) => this.data = resp.text);
-  }
+  constructor() { }
+
   ngOnInit(): void {
     this.createSvg();
-    d3.json(this.data);
+    d3.json('/api/GetBarData').then(resp => this.drawBars(this.data));
   }
 
   private createSvg(): void {
